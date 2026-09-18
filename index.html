@@ -3,14 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Nathael Web - Desarrollo de páginas, sistemas web y soluciones con bases de datos.">
 
     <title>Nathael Web | Desarrollo Web</title>
 
-    <meta name="description"
-        content="Nathael Web - Desarrollo de páginas y sistemas web, bases de datos y mantenimiento.">
-
     <style>
+
+        /* ==================================================
+           VARIABLES
+        ================================================== */
+
+        :root {
+            --bg: #080b12;
+            --bg-secondary: #0d121c;
+            --card: #111824;
+            --border: #202b3c;
+
+            --text: #f5f7fb;
+            --muted: #929db0;
+
+            --blue: #4f8cff;
+            --blue-light: #78a7ff;
+
+            --max-width: 1100px;
+        }
+
+
+        /* ==================================================
+           RESET
+        ================================================== */
+
         * {
             margin: 0;
             padding: 0;
@@ -22,10 +48,15 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0b0f19;
-            color: #f5f7fa;
-            line-height: 1.6;
+            background: var(--bg);
+            color: var(--text);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            line-height: 1.5;
         }
 
         a {
@@ -33,883 +64,1400 @@
             color: inherit;
         }
 
-        /* =========================
-           NAVEGACIÓN
-        ========================= */
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 15px 7%;
-
-            background: rgba(11, 15, 25, 0.88);
-            backdrop-filter: blur(12px);
-
-            border-bottom: 1px solid #202838;
+        img {
+            max-width: 100%;
+            display: block;
         }
 
-        .logo {
-            font-size: 21px;
-            font-weight: bold;
-        }
 
-        .logo span {
-            color: #4f8cff;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        nav ul a {
-            color: #c5cada;
-            font-size: 15px;
-            transition: 0.3s;
-        }
-
-        nav ul a:hover {
-            color: #4f8cff;
-        }
-
-        /* =========================
-           GENERAL
-        ========================= */
-
-        section {
-            padding: 80px 7%;
-        }
+        /* ==================================================
+           CONTENEDOR
+        ================================================== */
 
         .container {
-            max-width: 1100px;
+            width: min(
+                var(--max-width),
+                calc(100% - 40px)
+            );
+
             margin: auto;
         }
 
-        .section-title {
-            font-size: 34px;
-            margin-bottom: 8px;
+
+        /* ==================================================
+           NAVBAR
+        ================================================== */
+
+        header {
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+
+            background: rgba(8, 11, 18, 0.88);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid var(--border);
         }
 
-        .section-description {
-            color: #9ba6bb;
-            margin-bottom: 35px;
+        .navbar {
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* =========================
-           INICIO
-        ========================= */
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #aeb8c9;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+
+        /* ==================================================
+           HERO
+        ================================================== */
 
         .hero {
-            min-height: 90vh;
+            min-height: 600px;
 
             display: flex;
             align-items: center;
 
-            padding-top: 100px;
+            padding: 65px 0;
 
-            background:
-                radial-gradient(
-                    circle at 80% 20%,
-                    #172b55 0%,
-                    transparent 38%
-                ),
-                #0b0f19;
+            position: relative;
+
+            overflow: hidden;
         }
 
-        .hero-content {
-            max-width: 780px;
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            right: -120px;
+            top: -100px;
+
+            background: var(--blue);
+
+            opacity: 0.08;
+
+            filter: blur(80px);
+
+            border-radius: 50%;
         }
 
-        .hero small {
-            color: #4f8cff;
-            font-size: 15px;
-            font-weight: bold;
+        .hero-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.2fr
+                0.8fr;
+
+            align-items: center;
+
+            gap: 60px;
+
+            position: relative;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .eyebrow {
+            color: var(--blue-light);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
         }
 
         .hero h1 {
-            font-size: clamp(42px, 7vw, 70px);
-            line-height: 1.05;
-            margin: 12px 0 18px;
+            margin-top: 14px;
+
+            font-size: clamp(
+                44px,
+                6vw,
+                68px
+            );
+
+            line-height: 1.02;
+
+            letter-spacing: -2px;
         }
 
         .hero h1 span {
-            color: #4f8cff;
+            color: var(--blue);
         }
 
-        .hero p {
-            max-width: 680px;
-            font-size: 19px;
-            color: #aab4c7;
-            margin-bottom: 28px;
+        .hero-description {
+            margin-top: 20px;
+
+            max-width: 600px;
+
+            color: var(--muted);
+
+            font-size: 17px;
         }
 
-        .buttons {
+        .hero-buttons {
             display: flex;
-            gap: 12px;
+
             flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 28px;
         }
+
+
+        /* ==================================================
+           BOTONES
+        ================================================== */
 
         .btn {
-            display: inline-block;
-            padding: 12px 20px;
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 44px;
+
+            padding: 0 18px;
+
             border-radius: 8px;
-            font-weight: bold;
-            transition: 0.3s;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition:
+                transform 0.2s,
+                background 0.2s,
+                border 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
         }
 
         .btn-primary {
-            background: #4f8cff;
+            background: var(--blue);
+
             color: white;
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            background: #3d78e5;
+            background: #3e78df;
         }
 
-        .btn-secondary {
-            border: 1px solid #303b50;
-            color: #dbe2ef;
+        .btn-outline {
+            border: 1px solid var(--border);
+
+            color: #dce3ef;
         }
 
-        .btn-secondary:hover {
-            border-color: #4f8cff;
-            color: #4f8cff;
+        .btn-outline:hover {
+            border-color: var(--blue);
+
+            color: var(--blue-light);
         }
 
-        /* =========================
-           SOBRE MÍ
-        ========================= */
 
-        .about {
-            background: #0f1420;
+        /* ==================================================
+           TARJETA VISUAL DEL HERO
+        ================================================== */
+
+        .code-card {
+            width: 100%;
+
+            max-width: 370px;
+
+            margin-left: auto;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.25);
         }
 
-        .about-box {
-            max-width: 850px;
-            color: #b5bfd0;
-            font-size: 17px;
+        .code-header {
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 0 15px;
+
+            border-bottom: 1px solid var(--border);
+
+            background: #0e141f;
         }
 
-        .about-box p {
-            margin-bottom: 14px;
+        .dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #3a4558;
         }
 
-        /* =========================
-           SERVICIOS
-        ========================= */
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
+        .code-body {
+            padding: 28px;
         }
 
-        .service-card {
-            padding: 22px;
-            background: #111827;
-            border: 1px solid #202b3d;
+        .code-logo {
+            width: 70px;
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 22px;
+
             border-radius: 14px;
-            transition: 0.3s;
-        }
 
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: #4f8cff;
-        }
+            background: #162441;
 
-        .service-icon {
+            border: 1px solid #294576;
+
+            color: var(--blue-light);
+
             font-size: 32px;
-            margin-bottom: 10px;
+
+            font-weight: bold;
         }
 
-        .service-card h3 {
-            margin-bottom: 8px;
+        .code-body h2 {
+            font-size: 24px;
+
+            margin-bottom: 7px;
         }
 
-        .service-card p {
-            color: #929db1;
+        .code-body p {
+            color: var(--muted);
+
             font-size: 14px;
         }
 
-        /* =========================
+        .code-line {
+            height: 1px;
+
+            margin: 22px 0;
+
+            background: var(--border);
+        }
+
+        .code-stack {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+        }
+
+        .mini-tag {
+            padding: 5px 9px;
+
+            border-radius: 5px;
+
+            background: #172235;
+
+            color: #9ebdff;
+
+            font-size: 11px;
+        }
+
+
+        /* ==================================================
+           SECCIONES
+        ================================================== */
+
+        section {
+            padding: 75px 0;
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 32px;
+
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            margin-top: 7px;
+
+            color: var(--muted);
+
+            font-size: 15px;
+        }
+
+
+        /* ==================================================
+           SOBRE MÍ
+        ================================================== */
+
+        .about {
+            background: var(--bg-secondary);
+
+            border-top: 1px solid #151d2a;
+            border-bottom: 1px solid #151d2a;
+        }
+
+        .about-grid {
+            display: grid;
+
+            grid-template-columns:
+                0.8fr
+                1.2fr;
+
+            gap: 55px;
+
+            align-items: center;
+        }
+
+        .about-highlight {
+            padding: 25px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 14px;
+        }
+
+        .about-highlight strong {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: var(--blue-light);
+
+            font-size: 30px;
+        }
+
+        .about-highlight span {
+            color: var(--muted);
+
+            font-size: 14px;
+        }
+
+        .about-text {
+            color: #aeb8c9;
+
+            font-size: 16px;
+        }
+
+        .about-text p {
+            margin-bottom: 14px;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* ==================================================
+           SERVICIOS
+        ================================================== */
+
+        .services-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .service {
+            padding: 22px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            transition: 0.2s;
+        }
+
+        .service:hover {
+            transform: translateY(-4px);
+
+            border-color: #365d9e;
+        }
+
+        .service-icon {
+            font-size: 28px;
+
+            margin-bottom: 15px;
+        }
+
+        .service h3 {
+            margin-bottom: 7px;
+
+            font-size: 17px;
+        }
+
+        .service p {
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        /* ==================================================
            PROYECTOS
-        ========================= */
+        ================================================== */
 
         .projects {
-            background: #0f1420;
+            background: var(--bg-secondary);
+
+            border-top: 1px solid #151d2a;
+            border-bottom: 1px solid #151d2a;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
         }
 
-        .project-card {
-            background: #111827;
-            border: 1px solid #202b3d;
-            border-radius: 15px;
+        .project {
             overflow: hidden;
-            transition: 0.3s;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 14px;
+
+            transition: 0.25s;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: #4f8cff;
+        .project:hover {
+            transform: translateY(-4px);
+
+            border-color: #365d9e;
         }
 
-        /* IMAGEN DEL PROYECTO */
+        /* IMÁGENES DE LOS PROYECTOS */
 
         .project-image {
-            height: 240px;
+            height: 230px;
+
             overflow: hidden;
+
             background: #101827;
         }
 
         .project-image img {
             width: 100%;
             height: 100%;
+
             object-fit: cover;
+
             display: block;
+
+            transition: transform 0.3s ease;
         }
 
-        .project-info {
+        .project:hover .project-image img {
+            transform: scale(1.03);
+        }
+
+        .project-content {
             padding: 22px;
         }
 
-        .project-info h3 {
-            font-size: 21px;
+        .project-content h3 {
             margin-bottom: 8px;
+
+            font-size: 20px;
         }
 
-        .project-info p {
-            color: #9ba6bb;
+        .project-content p {
             margin-bottom: 16px;
-            font-size: 15px;
+
+            color: var(--muted);
+
+            font-size: 14px;
         }
 
         .tags {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 7px;
         }
 
         .tag {
             padding: 5px 9px;
+
             border-radius: 20px;
-            background: #1b2639;
-            color: #8eb4ff;
-            font-size: 12px;
+
+            background: #172235;
+
+            color: #9ebdff;
+
+            font-size: 11px;
         }
 
-        /* =========================
+
+        /* ==================================================
            TECNOLOGÍAS
-        ========================= */
+        ================================================== */
 
-        .technologies {
+        .tech-list {
             display: flex;
+
             flex-wrap: wrap;
-            gap: 10px;
+
+            gap: 9px;
         }
 
-        .technology {
-            padding: 10px 15px;
-            background: #111827;
-            border: 1px solid #202b3d;
-            border-radius: 8px;
-            color: #cbd4e4;
+        .tech {
+            padding: 9px 13px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 7px;
+
+            color: #bec8d8;
+
+            font-size: 13px;
         }
 
-        /* =========================
+
+        /* ==================================================
            CONTACTO
-        ========================= */
+        ================================================== */
 
         .contact {
             text-align: center;
         }
 
-        .contact p {
-            max-width: 600px;
-            margin: 0 auto 25px;
-            color: #9ba6bb;
-            font-size: 17px;
+        .contact-box {
+            max-width: 700px;
+
+            margin: auto;
         }
 
-        /* =========================
+        .contact-box h2 {
+            font-size: clamp(
+                30px,
+                5vw,
+                45px
+            );
+
+            line-height: 1.1;
+
+            margin-bottom: 14px;
+        }
+
+        .contact-box p {
+            margin-bottom: 25px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+        }
+
+
+        /* ==================================================
            FOOTER
-        ========================= */
+        ================================================== */
 
         footer {
+            padding: 22px 0;
+
+            border-top: 1px solid var(--border);
+
+            color: #687386;
+
+            font-size: 12px;
+
             text-align: center;
-            padding: 22px;
-            color: #707b90;
-            border-top: 1px solid #202838;
-            font-size: 14px;
         }
 
-        /* =========================
+
+        /* ==================================================
            TABLET
-        ========================= */
+        ================================================== */
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
 
-            nav {
-                padding: 14px 5%;
+            .hero-grid {
+                grid-template-columns: 1fr;
+
+                gap: 40px;
             }
 
-            nav ul {
-                gap: 15px;
+            .code-card {
+                margin: 0;
+
+                max-width: 500px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+
+                gap: 30px;
             }
 
             .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                min-height: 80vh;
-            }
         }
 
-        /* =========================
+
+        /* ==================================================
            CELULAR
-        ========================= */
+        ================================================== */
 
         @media (max-width: 600px) {
 
-            nav {
-                padding: 13px 5%;
+            .container {
+                width: min(
+                    92%,
+                    var(--max-width)
+                );
             }
 
-            .logo {
-                font-size: 19px;
+            /* NAV */
+
+            .navbar {
+                height: 58px;
             }
 
-            nav ul {
+            .nav-links {
                 display: none;
             }
 
-            section {
-                padding: 65px 6%;
-            }
+            /* HERO */
 
             .hero {
-                min-height: 82vh;
-                padding-top: 90px;
+                min-height: auto;
+
+                padding: 55px 0 50px;
+            }
+
+            .hero-grid {
+                gap: 35px;
             }
 
             .hero h1 {
                 font-size: 43px;
+
+                letter-spacing: -1.5px;
             }
 
-            .hero p {
-                font-size: 17px;
+            .hero-description {
+                font-size: 16px;
             }
 
-            .buttons {
+            .hero-buttons {
                 flex-direction: column;
+            }
+
+            .hero-buttons .btn {
                 width: 100%;
             }
 
-            .btn {
-                text-align: center;
-                width: 100%;
+            .code-card {
+                max-width: none;
+            }
+
+            .code-body {
+                padding: 22px;
+            }
+
+            /* SECCIONES */
+
+            section {
+                padding: 55px 0;
             }
 
             .section-title {
-                font-size: 29px;
+                font-size: 28px;
             }
 
-            .section-description {
-                font-size: 15px;
-                margin-bottom: 25px;
-            }
+            /* SERVICIOS */
 
             .services-grid {
                 grid-template-columns: 1fr;
+
+                gap: 10px;
             }
 
-            .service-card {
-                padding: 20px;
+            .service {
+                padding: 18px;
             }
+
+            /* PROYECTOS */
 
             .projects-grid {
                 grid-template-columns: 1fr;
+
+                gap: 15px;
             }
 
             .project-image {
-                height: 210px;
+                height: 180px;
             }
 
-            .project-info {
-                padding: 19px;
+            .project-content {
+                padding: 18px;
             }
 
-            .project-info h3 {
-                font-size: 20px;
+            /* CONTACTO */
+
+            .contact-box h2 {
+                font-size: 31px;
             }
 
-            .technologies {
-                gap: 8px;
-            }
-
-            .technology {
-                padding: 8px 12px;
-                font-size: 14px;
-            }
         }
+
     </style>
 </head>
 
+
 <body>
 
+    <header>
 
-    <!-- =========================
-         NAVEGACIÓN
-    ========================= -->
+        <div class="container navbar">
 
-    <nav>
+            <a href="#inicio" class="logo">
+                Nathael<span>Web</span>
+            </a>
 
-        <a href="#inicio" class="logo">
-            Nathael<span>Web</span>
-        </a>
+            <ul class="nav-links">
 
-        <ul>
+                <li>
+                    <a href="#sobre-mi">
+                        Sobre mí
+                    </a>
+                </li>
 
-            <li>
-                <a href="#sobre-mi">Sobre mí</a>
-            </li>
+                <li>
+                    <a href="#servicios">
+                        Servicios
+                    </a>
+                </li>
 
-            <li>
-                <a href="#servicios">Servicios</a>
-            </li>
+                <li>
+                    <a href="#proyectos">
+                        Proyectos
+                    </a>
+                </li>
 
-            <li>
-                <a href="#proyectos">Proyectos</a>
-            </li>
+                <li>
+                    <a href="#contacto">
+                        Contacto
+                    </a>
+                </li>
 
-            <li>
-                <a href="#contacto">Contacto</a>
-            </li>
-
-        </ul>
-
-    </nav>
-
-
-    <!-- =========================
-         INICIO
-    ========================= -->
-
-    <section class="hero" id="inicio">
-
-        <div class="container hero-content">
-
-            <small>💻 DESARROLLO WEB</small>
-
-            <h1>
-                Creo páginas y
-                <span>sistemas web.</span>
-            </h1>
-
-            <p>
-                Desarrollo soluciones web para negocios y proyectos,
-                desde páginas informativas hasta sistemas conectados
-                a bases de datos.
-            </p>
-
-            <div class="buttons">
-
-                <a href="#proyectos" class="btn btn-primary">
-                    Ver mis proyectos
-                </a>
-
-                <a
-                    href="https://wa.me/529811777056?text=Hola%2C%20vi%20tu%20portafolio%20y%20me%20gustaría%20cotizar%20una%20página%20web."
-                    target="_blank"
-                    class="btn btn-secondary">
-
-                    💬 Contactarme por WhatsApp
-
-                </a>
-
-            </div>
+            </ul>
 
         </div>
 
-    </section>
+    </header>
 
 
-    <!-- =========================
-         SOBRE MÍ
-    ========================= -->
+    <main>
 
-    <section class="about" id="sobre-mi">
+        <!-- ==================================================
+             HERO
+        ================================================== -->
 
-        <div class="container">
+        <section class="hero" id="inicio">
 
-            <h2 class="section-title">
-                Sobre mí
-            </h2>
+            <div class="container hero-grid">
 
-            <p class="section-description">
-                Un poco sobre quién está detrás de Nathael Web.
-            </p>
+                <div class="hero-text">
 
-            <div class="about-box">
+                    <span class="eyebrow">
+                        💻 Desarrollo Web
+                    </span>
 
-                <p>
-                    Soy desarrollador web y me gusta crear soluciones
-                    digitales que sean útiles, sencillas de utilizar
-                    y adaptadas a las necesidades de cada proyecto.
-                </p>
+                    <h1>
+                        Creo páginas y
+                        <span>sistemas web.</span>
+                    </h1>
 
-                <p>
-                    He desarrollado sistemas web conectados a bases
-                    de datos y proyectos utilizados en situaciones reales.
-                </p>
-
-                <p>
-                    Actualmente ofrezco desarrollo de páginas,
-                    sistemas web y mantenimiento.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         SERVICIOS
-    ========================= -->
-
-    <section id="servicios">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                Servicios
-            </h2>
-
-            <p class="section-description">
-                Soluciones web para diferentes tipos de proyectos.
-            </p>
-
-            <div class="services-grid">
-
-
-                <div class="service-card">
-
-                    <div class="service-icon">
-                        🌐
-                    </div>
-
-                    <h3>
-                        Páginas web
-                    </h3>
-
-                    <p>
-                        Páginas modernas y adaptadas para celulares,
-                        negocios, emprendimientos y proyectos.
+                    <p class="hero-description">
+                        Desarrollo soluciones web para negocios
+                        y proyectos, desde páginas informativas
+                        hasta sistemas conectados a bases de datos.
                     </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#proyectos"
+                            class="btn btn-primary">
+
+                            Ver mis proyectos
+
+                        </a>
+
+
+                        <a
+                            href="https://wa.me/529811777056?text=Hola%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20cotizar%20una%20p%C3%A1gina%20web."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-outline">
+
+                            💬 WhatsApp
+
+                        </a>
+
+                    </div>
 
                 </div>
 
 
-                <div class="service-card">
+                <!-- ==================================================
+                     TARJETA
+                ================================================== -->
 
-                    <div class="service-icon">
-                        ⚙️
-                    </div>
+                <div class="code-card">
 
-                    <h3>
-                        Sistemas web
-                    </h3>
+                    <div class="code-header">
 
-                    <p>
-                        Sistemas para administrar información,
-                        usuarios y diferentes procesos.
-                    </p>
-
-                </div>
-
-
-                <div class="service-card">
-
-                    <div class="service-icon">
-                        🗄️
-                    </div>
-
-                    <h3>
-                        Bases de datos
-                    </h3>
-
-                    <p>
-                        Sistemas conectados a bases de datos para
-                        almacenar y gestionar información.
-                    </p>
-
-                </div>
-
-
-                <div class="service-card">
-
-                    <div class="service-icon">
-                        🔧
-                    </div>
-
-                    <h3>
-                        Mantenimiento
-                    </h3>
-
-                    <p>
-                        Correcciones, modificaciones y actualizaciones
-                        para sitios y sistemas existentes.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         PROYECTOS
-    ========================= -->
-
-    <section class="projects" id="proyectos">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                Mis proyectos
-            </h2>
-
-            <p class="section-description">
-                Algunos de los proyectos que he desarrollado.
-            </p>
-
-
-            <div class="projects-grid">
-
-
-                <!-- PROYECTO ESCOLAR -->
-
-                <article class="project-card">
-
-                    <div class="project-image">
-
-                        <img
-                            src="img/escolar.png"
-                            alt="Sistema de Registros Escolares">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
 
                     </div>
 
-                    <div class="project-info">
 
-                        <h3>
-                            Sistema de Registros Escolares
-                        </h3>
+                    <div class="code-body">
+
+                        <div class="code-logo">
+                            &lt;/&gt;
+                        </div>
+
+                        <h2>
+                            Nathael Web
+                        </h2>
 
                         <p>
-                            Sistema web desarrollado para gestionar
-                            información escolar y facilitar la
-                            administración de datos.
+                            Desarrollo de páginas y sistemas
+                            web personalizados.
                         </p>
 
-                        <div class="tags">
+                        <div class="code-line"></div>
 
-                            <span class="tag">
-                                PHP
-                            </span>
+                        <div class="code-stack">
 
-                            <span class="tag">
-                                MySQL
-                            </span>
-
-                            <span class="tag">
+                            <span class="mini-tag">
                                 HTML
                             </span>
 
-                            <span class="tag">
+                            <span class="mini-tag">
                                 CSS
                             </span>
 
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PROYECTO ALBERGUE -->
-
-                <article class="project-card">
-
-                    <div class="project-image">
-
-                        <img
-                            src="img/albergue.png"
-                            alt="Sistema de Gestión para Albergue">
-
-                    </div>
-
-                    <div class="project-info">
-
-                        <h3>
-                            Sistema de Gestión para Albergue
-                        </h3>
-
-                        <p>
-                            Sistema web desarrollado para gestionar
-                            información y registros de un albergue.
-                        </p>
-
-                        <div class="tags">
-
-                            <span class="tag">
-                                Laravel
-                            </span>
-
-                            <span class="tag">
-                                PHP
-                            </span>
-
-                            <span class="tag">
-                                MySQL
-                            </span>
-
-                            <span class="tag">
+                            <span class="mini-tag">
                                 JavaScript
                             </span>
 
+                            <span class="mini-tag">
+                                PHP
+                            </span>
+
+                            <span class="mini-tag">
+                                Laravel
+                            </span>
+
+                            <span class="mini-tag">
+                                MySQL
+                            </span>
+
                         </div>
 
                     </div>
 
-                </article>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         TECNOLOGÍAS
-    ========================= -->
-
-    <section>
-
-        <div class="container">
-
-            <h2 class="section-title">
-                Tecnologías
-            </h2>
-
-            <p class="section-description">
-                Algunas de las tecnologías con las que he trabajado.
-            </p>
-
-            <div class="technologies">
-
-                <span class="technology">
-                    HTML
-                </span>
-
-                <span class="technology">
-                    CSS
-                </span>
-
-                <span class="technology">
-                    JavaScript
-                </span>
-
-                <span class="technology">
-                    PHP
-                </span>
-
-                <span class="technology">
-                    Laravel
-                </span>
-
-                <span class="technology">
-                    MySQL
-                </span>
-
-                <span class="technology">
-                    Git
-                </span>
-
-                <span class="technology">
-                    GitHub
-                </span>
+                </div>
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- =========================
-         CONTACTO
-    ========================= -->
+        <!-- ==================================================
+             SOBRE MÍ
+        ================================================== -->
 
-    <section class="contact" id="contacto">
+        <section class="about" id="sobre-mi">
 
-        <div class="container">
+            <div class="container">
 
-            <h2 class="section-title">
-                ¿Tienes un proyecto en mente?
-            </h2>
+                <div class="section-header">
 
-            <p>
-                Cuéntame qué necesitas y podemos hablar sobre
-                cómo puedo ayudarte con tu proyecto web.
-            </p>
+                    <h2 class="section-title">
+                        Sobre mí
+                    </h2>
 
-            <a
-                href="https://wa.me/529811777056?text=Hola%2C%20vi%20tu%20portafolio%20y%20me%20gustaría%20cotizar%20una%20página%20web."
-                target="_blank"
-                class="btn btn-primary">
+                    <p class="section-subtitle">
+                        Un poco sobre quién está detrás de Nathael Web.
+                    </p>
 
-                💬 Contactarme por WhatsApp
-
-            </a>
-
-        </div>
-
-    </section>
+                </div>
 
 
-    <!-- =========================
+                <div class="about-grid">
+
+
+                    <div class="about-highlight">
+
+                        <strong>
+                            Web + BD
+                        </strong>
+
+                        <span>
+                            Desarrollo de sistemas
+                            conectados a bases de datos.
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-text">
+
+                        <p>
+                            Soy desarrollador web y me gusta crear
+                            soluciones digitales útiles, sencillas
+                            de utilizar y adaptadas a cada proyecto.
+                        </p>
+
+                        <p>
+                            He desarrollado sistemas web conectados
+                            a bases de datos y proyectos utilizados
+                            en situaciones reales.
+                        </p>
+
+                        <p>
+                            Actualmente ofrezco desarrollo de páginas,
+                            sistemas web y mantenimiento.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             SERVICIOS
+        ================================================== -->
+
+        <section id="servicios">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Servicios
+                    </h2>
+
+                    <p class="section-subtitle">
+                        Soluciones adaptadas a lo que necesitas.
+                    </p>
+
+                </div>
+
+
+                <div class="services-grid">
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            🌐
+                        </div>
+
+                        <h3>
+                            Páginas web
+                        </h3>
+
+                        <p>
+                            Sitios modernos y adaptados a celulares
+                            para negocios, proyectos y emprendimientos.
+                        </p>
+
+                    </article>
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            ⚙️
+                        </div>
+
+                        <h3>
+                            Sistemas web
+                        </h3>
+
+                        <p>
+                            Sistemas para gestionar información,
+                            usuarios y diferentes procesos.
+                        </p>
+
+                    </article>
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            🗄️
+                        </div>
+
+                        <h3>
+                            Bases de datos
+                        </h3>
+
+                        <p>
+                            Soluciones conectadas a bases de datos
+                            para almacenar y administrar información.
+                        </p>
+
+                    </article>
+
+
+                    <article class="service">
+
+                        <div class="service-icon">
+                            🔧
+                        </div>
+
+                        <h3>
+                            Mantenimiento
+                        </h3>
+
+                        <p>
+                            Correcciones, cambios y actualizaciones
+                            para páginas y sistemas existentes.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             PROYECTOS
+        ================================================== -->
+
+        <section class="projects" id="proyectos">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Proyectos
+                    </h2>
+
+                    <p class="section-subtitle">
+                        Algunos de los sistemas que he desarrollado.
+                    </p>
+
+                </div>
+
+
+                <div class="projects-grid">
+
+
+                    <!-- PROYECTO ESCOLAR -->
+
+                    <article class="project">
+
+                        <div class="project-image">
+
+                            <img
+                                src="Img/escolar.png"
+                                alt="Sistema de Registros Escolares">
+
+                        </div>
+
+
+                        <div class="project-content">
+
+                            <h3>
+                                Sistema de Registros Escolares
+                            </h3>
+
+                            <p>
+                                Sistema web desarrollado para gestionar
+                                información escolar y facilitar la
+                                administración de datos.
+                            </p>
+
+
+                            <div class="tags">
+
+                                <span class="tag">
+                                    PHP
+                                </span>
+
+                                <span class="tag">
+                                    MySQL
+                                </span>
+
+                                <span class="tag">
+                                    HTML
+                                </span>
+
+                                <span class="tag">
+                                    CSS
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PROYECTO ALBERGUE -->
+
+                    <article class="project">
+
+                        <div class="project-image">
+
+                            <img
+                                src="Img/albergue.png"
+                                alt="Sistema de Gestión para Albergue">
+
+                        </div>
+
+
+                        <div class="project-content">
+
+                            <h3>
+                                Sistema de Gestión para Albergue
+                            </h3>
+
+                            <p>
+                                Sistema web desarrollado para gestionar
+                                información y registros de un albergue.
+                            </p>
+
+
+                            <div class="tags">
+
+                                <span class="tag">
+                                    Laravel
+                                </span>
+
+                                <span class="tag">
+                                    PHP
+                                </span>
+
+                                <span class="tag">
+                                    MySQL
+                                </span>
+
+                                <span class="tag">
+                                    JavaScript
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             TECNOLOGÍAS
+        ================================================== -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Tecnologías
+                    </h2>
+
+                    <p class="section-subtitle">
+                        Algunas tecnologías con las que he trabajado.
+                    </p>
+
+                </div>
+
+
+                <div class="tech-list">
+
+                    <span class="tech">
+                        HTML
+                    </span>
+
+                    <span class="tech">
+                        CSS
+                    </span>
+
+                    <span class="tech">
+                        JavaScript
+                    </span>
+
+                    <span class="tech">
+                        PHP
+                    </span>
+
+                    <span class="tech">
+                        Laravel
+                    </span>
+
+                    <span class="tech">
+                        MySQL
+                    </span>
+
+                    <span class="tech">
+                        Git
+                    </span>
+
+                    <span class="tech">
+                        GitHub
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             CONTACTO
+        ================================================== -->
+
+        <section class="contact" id="contacto">
+
+            <div class="container">
+
+                <div class="contact-box">
+
+                    <h2>
+                        ¿Tienes un proyecto en mente?
+                    </h2>
+
+                    <p>
+                        Cuéntame qué necesitas y hablamos sobre
+                        cómo puedo ayudarte.
+                    </p>
+
+
+                    <a
+                        href="https://wa.me/529811777056?text=Hola%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20cotizar%20una%20p%C3%A1gina%20web."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary">
+
+                        💬 Contactarme por WhatsApp
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================================================
          FOOTER
-    ========================= -->
+    ================================================== -->
 
     <footer>
 
-        © 2026 Nathael Web · Desarrollo Web
+        <div class="container">
+
+            ©️ 2026 Nathael Web · Desarrollo Web
+
+        </div>
 
     </footer>
 
