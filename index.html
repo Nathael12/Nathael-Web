@@ -4,31 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description"
         content="Nathael Web - Desarrollo de páginas, sistemas web y soluciones con bases de datos.">
-
-    <meta property="og:title" content="Nathael Web">
-    <meta property="og:description" content="Páginas y sistemas web con bases de datos.">
-    <meta property="og:type" content="website">
 
     <title>Nathael Web | Desarrollo Web</title>
 
     <style>
 
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
+
         :root {
-            --bg: #080b12;
-            --bg-secondary: #0d121c;
-            --card: #111824;
-            --border: #202b3c;
+            --bg: #07090f;
+            --bg-soft: #0c1019;
+            --card: #111722;
+            --card-hover: #151c29;
 
-            --text: #f5f7fb;
-            --muted: #929db0;
+            --text: #f4f7ff;
+            --muted: #8f9aae;
 
-            --blue: #4f8cff;
-            --blue-light: #78a7ff;
+            --blue: #4d8dff;
+            --blue-light: #79adff;
 
-            --max-width: 1100px;
+            --border: rgba(255,255,255,0.08);
+
+            --max-width: 1150px;
         }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
 
         * {
             margin: 0;
@@ -43,49 +51,105 @@
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.5;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
         img {
-            max-width: 100%;
+            width: 100%;
             display: block;
         }
 
-        a:focus-visible,
-        button:focus-visible {
-            outline: 2px solid var(--blue);
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-
         .container {
-            width: min(var(--max-width), calc(100% - 40px));
+            width: min(
+                var(--max-width),
+                calc(100% - 40px)
+            );
+
             margin: auto;
         }
 
 
-        /* ==================================================
+        /* =========================================================
+           FONDO DECORATIVO
+        ========================================================= */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            top: -200px;
+            right: -150px;
+
+            background: rgba(77,141,255,0.12);
+
+            filter: blur(100px);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            bottom: -200px;
+            left: -150px;
+
+            background: rgba(77,141,255,0.06);
+
+            filter: blur(100px);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        /* =========================================================
            NAVBAR
-        ================================================== */
+        ========================================================= */
 
         header {
             position: sticky;
             top: 0;
+
             z-index: 1000;
-            background: rgba(8, 11, 18, 0.88);
-            backdrop-filter: blur(12px);
+
+            background: rgba(7,9,15,0.85);
+
+            backdrop-filter: blur(16px);
+
             border-bottom: 1px solid var(--border);
         }
 
         .navbar {
-            height: 64px;
+            height: 70px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -93,7 +157,8 @@
 
         .logo {
             font-size: 20px;
-            font-weight: 700;
+            font-weight: 800;
+
             letter-spacing: -0.5px;
         }
 
@@ -103,107 +168,129 @@
 
         .nav-links {
             display: flex;
-            gap: 25px;
+
+            gap: 30px;
+
             list-style: none;
         }
 
         .nav-links a {
-            color: #aeb8c9;
+            color: var(--muted);
+
             font-size: 14px;
-            transition: 0.2s;
+
+            transition: 0.25s;
         }
 
         .nav-links a:hover {
-            color: var(--blue);
+            color: white;
+        }
+
+        .nav-contact {
+            padding: 9px 15px;
+
+            border: 1px solid rgba(77,141,255,0.35);
+
+            border-radius: 8px;
+
+            color: var(--blue-light) !important;
+        }
+
+        .nav-contact:hover {
+            background: rgba(77,141,255,0.1);
         }
 
         .menu-toggle {
             display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 40px;
-            height: 40px;
+
+            width: 42px;
+            height: 42px;
+
             background: transparent;
+
             border: 1px solid var(--border);
+
             border-radius: 8px;
+
             cursor: pointer;
-            padding: 10px;
         }
 
         .menu-toggle span {
             display: block;
-            width: 100%;
+
+            width: 20px;
             height: 2px;
-            background: var(--text);
-            border-radius: 2px;
-            transition: transform 0.25s, opacity 0.2s;
-        }
 
-        .menu-toggle[aria-expanded="true"] span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
+            margin: 4px auto;
 
-        .menu-toggle[aria-expanded="true"] span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle[aria-expanded="true"] span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
+            background: white;
         }
 
 
-        /* ==================================================
+        /* =========================================================
            HERO
-        ================================================== */
+        ========================================================= */
 
         .hero {
-            min-height: 600px;
+            min-height: 720px;
+
             display: flex;
             align-items: center;
-            padding: 65px 0;
-            position: relative;
-            overflow: hidden;
-        }
 
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            right: -120px;
-            top: -100px;
-            background: var(--blue);
-            opacity: 0.08;
-            filter: blur(80px);
-            border-radius: 50%;
+            position: relative;
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+
+            grid-template-columns: 1.1fr 0.9fr;
+
+            gap: 80px;
+
             align-items: center;
-            gap: 60px;
-            position: relative;
         }
 
-        .hero-text {
-            max-width: 650px;
-        }
+        .hero-small {
+            display: inline-flex;
 
-        .eyebrow {
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
             color: var(--blue-light);
+
             font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
             text-transform: uppercase;
         }
 
+        .hero-small::before {
+            content: "";
+
+            width: 30px;
+            height: 1px;
+
+            background: var(--blue);
+        }
+
         .hero h1 {
-            margin-top: 14px;
-            font-size: clamp(44px, 6vw, 68px);
-            line-height: 1.02;
-            letter-spacing: -2px;
+            max-width: 720px;
+
+            font-size: clamp(
+                48px,
+                7vw,
+                82px
+            );
+
+            line-height: 0.98;
+
+            letter-spacing: -4px;
         }
 
         .hero h1 span {
@@ -211,595 +298,785 @@
         }
 
         .hero-description {
-            margin-top: 20px;
-            max-width: 600px;
+            max-width: 620px;
+
+            margin-top: 28px;
+
             color: var(--muted);
+
             font-size: 17px;
-        }
-
-        .hero-meta {
-            margin-top: 22px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            color: #6f7b8e;
-            font-size: 13px;
-        }
-
-        .hero-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-        }
-
-        .hero-meta span::before {
-            content: "";
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #3a4558;
         }
 
         .hero-buttons {
             display: flex;
-            flex-wrap: wrap;
+
             gap: 12px;
-            margin-top: 28px;
+
+            margin-top: 32px;
         }
-
-
-        /* ==================================================
-           BOTONES
-        ================================================== */
 
         .btn {
             display: inline-flex;
+
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            min-height: 44px;
-            padding: 0 18px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            transition: transform 0.2s, background 0.2s, border 0.2s;
-            cursor: pointer;
-        }
 
-        .btn:hover {
-            transform: translateY(-2px);
+            min-height: 46px;
+
+            padding: 0 20px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            transition: 0.25s;
         }
 
         .btn-primary {
             background: var(--blue);
+
             color: white;
+
+            box-shadow:
+                0 10px 30px rgba(77,141,255,0.18);
         }
 
         .btn-primary:hover {
-            background: #3e78df;
+            transform: translateY(-3px);
+
+            background: #397be9;
         }
 
-        .btn-outline {
+        .btn-secondary {
             border: 1px solid var(--border);
-            color: #dce3ef;
+
+            color: #d8deea;
         }
 
-        .btn-outline:hover {
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+
             border-color: var(--blue);
+
             color: var(--blue-light);
         }
 
 
-        /* ==================================================
-           TARJETA
-        ================================================== */
+        /* =========================================================
+           TARJETA DEL HERO
+        ========================================================= */
 
-        .code-card {
-            width: 100%;
-            max-width: 370px;
-            margin-left: auto;
-            background: var(--card);
+        .developer-card {
+            position: relative;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #121927,
+                    #0d121c
+                );
+
             border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.35);
         }
 
-        .code-header {
-            height: 42px;
+        .card-top {
             display: flex;
+
+            justify-content: space-between;
+
             align-items: center;
-            gap: 7px;
-            padding: 0 15px;
-            border-bottom: 1px solid var(--border);
-            background: #0e141f;
+
+            margin-bottom: 30px;
         }
 
-        .dot {
+        .window-dots {
+            display: flex;
+
+            gap: 7px;
+        }
+
+        .window-dots span {
             width: 9px;
             height: 9px;
+
             border-radius: 50%;
+
             background: #3a4558;
         }
 
-        .code-body {
-            padding: 28px;
+        .card-status {
+            color: #7f8da5;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
         }
 
-        .code-logo {
-            width: 70px;
-            height: 70px;
+        .developer-icon {
+            width: 80px;
+            height: 80px;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
-            margin-bottom: 22px;
-            border-radius: 14px;
-            background: #162441;
-            border: 1px solid #294576;
+
+            margin-bottom: 25px;
+
+            background:
+                rgba(77,141,255,0.12);
+
+            border: 1px solid
+                rgba(77,141,255,0.3);
+
+            border-radius: 16px;
+
             color: var(--blue-light);
-            font-size: 32px;
+
+            font-size: 28px;
+
             font-weight: bold;
         }
 
-        .code-body h2 {
-            font-size: 24px;
-            margin-bottom: 7px;
+        .developer-card h2 {
+            font-size: 28px;
+
+            margin-bottom: 8px;
         }
 
-        .code-body p {
+        .developer-card p {
             color: var(--muted);
+
             font-size: 14px;
         }
 
-        .code-line {
-            height: 1px;
-            margin: 22px 0;
-            background: var(--border);
+        .code-preview {
+            margin-top: 28px;
+
+            padding: 18px;
+
+            background: #080c13;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            font-family: monospace;
+
+            font-size: 13px;
+
+            color: #91a1b9;
         }
 
-        .code-stack {
+        .code-preview .blue {
+            color: var(--blue-light);
+        }
+
+        .code-preview .white {
+            color: white;
+        }
+
+        .stack {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 7px;
+
+            margin-top: 22px;
         }
 
-        .mini-tag {
-            padding: 5px 9px;
-            border-radius: 5px;
-            background: #172235;
-            color: #9ebdff;
+        .stack span {
+            padding: 6px 10px;
+
+            background: #182234;
+
+            border-radius: 6px;
+
+            color: #a9c7ff;
+
             font-size: 11px;
         }
 
 
-        /* ==================================================
+        /* =========================================================
            SECCIONES
-        ================================================== */
+        ========================================================= */
 
         section {
-            padding: 75px 0;
+            padding: 100px 0;
         }
 
-        .section-header {
-            margin-bottom: 32px;
+        .section-heading {
+            max-width: 650px;
+
+            margin-bottom: 45px;
+        }
+
+        .section-label {
+            display: block;
+
+            margin-bottom: 10px;
+
+            color: var(--blue-light);
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
         }
 
         .section-title {
-            font-size: 32px;
-            letter-spacing: -0.5px;
+            font-size: clamp(32px, 5vw, 48px);
+
+            letter-spacing: -2px;
         }
 
-        .section-subtitle {
-            margin-top: 7px;
+        .section-description {
+            margin-top: 12px;
+
             color: var(--muted);
-            font-size: 15px;
         }
 
 
-        /* ==================================================
+        /* =========================================================
            SOBRE MÍ
-        ================================================== */
+        ========================================================= */
 
         .about {
-            background: var(--bg-secondary);
-            border-top: 1px solid #151d2a;
-            border-bottom: 1px solid #151d2a;
+            background: var(--bg-soft);
+
+            border-top: 1px solid var(--border);
+
+            border-bottom: 1px solid var(--border);
         }
 
         .about-grid {
             display: grid;
+
             grid-template-columns: 0.8fr 1.2fr;
-            gap: 55px;
+
+            gap: 70px;
+
             align-items: center;
         }
 
-        .about-highlight {
-            padding: 25px;
+        .about-number {
+            font-size: 110px;
+
+            line-height: 1;
+
+            font-weight: 900;
+
+            color: rgba(77,141,255,0.12);
+
+            letter-spacing: -8px;
+        }
+
+        .about-card {
+            padding: 28px;
+
             background: var(--card);
+
             border: 1px solid var(--border);
-            border-radius: 14px;
+
+            border-radius: 16px;
         }
 
-        .about-highlight strong {
-            display: block;
-            margin-bottom: 6px;
-            color: var(--blue-light);
-            font-size: 30px;
+        .about-card p {
+            color: #b2bdce;
+
+            margin-bottom: 16px;
         }
 
-        .about-highlight span {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .about-text {
-            color: #aeb8c9;
-            font-size: 16px;
-        }
-
-        .about-text p {
-            margin-bottom: 14px;
-        }
-
-        .about-text p:last-child {
+        .about-card p:last-child {
             margin-bottom: 0;
         }
 
+        .skills {
+            display: grid;
 
-        /* ==================================================
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+        .skill {
+            padding: 16px;
+
+            background: #0c111a;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+        }
+
+        .skill strong {
+            display: block;
+
+            margin-bottom: 3px;
+
+            color: white;
+        }
+
+        .skill span {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
            SERVICIOS
-        ================================================== */
+        ========================================================= */
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
             gap: 15px;
         }
 
         .service {
-            padding: 22px;
+            min-height: 220px;
+
+            padding: 25px;
+
             background: var(--card);
+
             border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: 0.2s;
+
+            border-radius: 15px;
+
+            transition: 0.3s;
         }
 
         .service:hover {
-            transform: translateY(-4px);
-            border-color: #365d9e;
+            transform: translateY(-6px);
+
+            background: var(--card-hover);
+
+            border-color:
+                rgba(77,141,255,0.4);
+        }
+
+        .service-number {
+            color: #536178;
+
+            font-family: monospace;
+
+            font-size: 12px;
         }
 
         .service-icon {
+            margin: 28px 0 18px;
+
             font-size: 28px;
-            margin-bottom: 15px;
         }
 
         .service h3 {
-            margin-bottom: 7px;
-            font-size: 17px;
+            margin-bottom: 8px;
+
+            font-size: 18px;
         }
 
         .service p {
             color: var(--muted);
+
             font-size: 13px;
         }
 
 
-        /* ==================================================
+        /* =========================================================
            PROYECTOS
-        ================================================== */
+        ========================================================= */
 
         .projects {
-            background: var(--bg-secondary);
-            border-top: 1px solid #151d2a;
-            border-bottom: 1px solid #151d2a;
+            background: var(--bg-soft);
+
+            border-top: 1px solid var(--border);
+
+            border-bottom: 1px solid var(--border);
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
         }
 
         .project {
             overflow: hidden;
+
             background: var(--card);
+
             border: 1px solid var(--border);
-            border-radius: 14px;
-            transition: 0.25s;
+
+            border-radius: 16px;
+
+            transition: 0.3s;
         }
 
         .project:hover {
-            transform: translateY(-4px);
-            border-color: #365d9e;
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(77,141,255,0.4);
         }
 
         .project-image {
-            height: 230px;
+            height: 270px;
+
             overflow: hidden;
-            background: #101827;
+
+            background: #0b1018;
         }
 
         .project-image img {
-            width: 100%;
             height: 100%;
+
             object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
+
+            transition: 0.4s;
         }
 
-        .project:hover .project-image img {
-            transform: scale(1.03);
+        .project:hover img {
+            transform: scale(1.04);
         }
 
         .project-content {
-            padding: 22px;
+            padding: 25px;
         }
 
-        .project-content h3 {
-            margin-bottom: 8px;
-            font-size: 20px;
+        .project-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 12px;
         }
 
-        .project-content p {
-            margin-bottom: 16px;
-            color: var(--muted);
-            font-size: 14px;
+        .project-number {
+            color: #68758b;
+
+            font-family: monospace;
+
+            font-size: 12px;
         }
 
-        .project-note {
-            display: inline-block;
-            margin-bottom: 16px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: rgba(79, 140, 255, 0.08);
-            border: 1px solid rgba(79, 140, 255, 0.2);
+        .project-type {
             color: var(--blue-light);
+
             font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+
             text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .project h3 {
+            font-size: 22px;
+
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            margin-bottom: 18px;
         }
 
         .tags {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 7px;
         }
 
         .tag {
             padding: 5px 9px;
-            border-radius: 20px;
-            background: #172235;
-            color: #9ebdff;
+
+            background: #182234;
+
+            border-radius: 5px;
+
+            color: #a9c7ff;
+
             font-size: 11px;
         }
 
 
-        /* ==================================================
+        /* =========================================================
            TECNOLOGÍAS
-        ================================================== */
+        ========================================================= */
 
-        .tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
+        .tech-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
         }
 
         .tech {
-            padding: 9px 13px;
+            padding: 20px;
+
             background: var(--card);
+
             border: 1px solid var(--border);
-            border-radius: 7px;
-            color: #bec8d8;
-            font-size: 13px;
+
+            border-radius: 10px;
+
+            transition: 0.25s;
+        }
+
+        .tech:hover {
+            border-color:
+                rgba(77,141,255,0.4);
+
+            transform: translateY(-3px);
+        }
+
+        .tech strong {
+            display: block;
+
+            margin-bottom: 4px;
+        }
+
+        .tech span {
+            color: var(--muted);
+
+            font-size: 12px;
         }
 
 
-        /* ==================================================
+        /* =========================================================
            CONTACTO
-        ================================================== */
+        ========================================================= */
 
         .contact {
+            padding: 130px 0;
+
             text-align: center;
         }
 
         .contact-box {
-            max-width: 700px;
+            max-width: 750px;
+
             margin: auto;
+
+            padding: 65px 35px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #121a29,
+                    #0d121b
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
         }
 
         .contact-box h2 {
-            font-size: clamp(30px, 5vw, 45px);
-            line-height: 1.1;
-            margin-bottom: 14px;
+            font-size: clamp(
+                35px,
+                6vw,
+                58px
+            );
+
+            line-height: 1;
+
+            letter-spacing: -3px;
         }
 
         .contact-box p {
-            margin-bottom: 25px;
+            max-width: 520px;
+
+            margin: 20px auto 30px;
+
             color: var(--muted);
-            font-size: 16px;
-        }
-
-        .contact-extra {
-            margin-top: 22px;
-            color: #6f7b8e;
-            font-size: 13px;
-        }
-
-        .contact-extra a {
-            color: #aeb8c9;
-            border-bottom: 1px dashed #3a4558;
-            transition: 0.2s;
-        }
-
-        .contact-extra a:hover {
-            color: var(--blue-light);
-            border-color: var(--blue);
         }
 
 
-        /* ==================================================
+        /* =========================================================
            FOOTER
-        ================================================== */
+        ========================================================= */
 
         footer {
-            padding: 22px 0;
+            padding: 30px 0;
+
             border-top: 1px solid var(--border);
-            color: #687386;
+
+            color: #657187;
+
             font-size: 12px;
+
             text-align: center;
         }
 
-        footer .footer-links {
-            margin-top: 8px;
+        .footer-links {
             display: flex;
+
             justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
+
+            gap: 20px;
+
+            margin-top: 10px;
         }
 
-        footer .footer-links a {
-            color: #8692a6;
-            transition: 0.2s;
-        }
-
-        footer .footer-links a:hover {
+        .footer-links a:hover {
             color: var(--blue-light);
         }
 
 
-        /* ==================================================
-           ANIMACIONES REVEAL
-        ================================================== */
+        /* =========================================================
+           ANIMACIÓN
+        ========================================================= */
 
         .reveal {
             opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+
+            transform: translateY(25px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
         }
 
         .reveal.visible {
             opacity: 1;
+
             transform: translateY(0);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .reveal {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            html {
-                scroll-behavior: auto;
-            }
-        }
 
-
-        /* ==================================================
-           TABLET
-        ================================================== */
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
 
         @media (max-width: 900px) {
 
             .hero-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+
+                gap: 50px;
             }
 
-            .code-card {
-                margin: 0;
-                max-width: 500px;
+            .developer-card {
+                max-width: 600px;
             }
 
             .about-grid {
                 grid-template-columns: 1fr;
+
                 gap: 30px;
             }
 
             .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
+            .tech-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
         }
 
 
-        /* ==================================================
-           CELULAR
-        ================================================== */
-
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
 
             .container {
-                width: min(92%, var(--max-width));
+                width: min(
+                    92%,
+                    var(--max-width)
+                );
             }
 
             .navbar {
-                height: 58px;
-                position: relative;
+                height: 62px;
             }
 
             .menu-toggle {
-                display: flex;
+                display: block;
             }
 
             .nav-links {
                 position: absolute;
-                top: 100%;
+
+                top: 62px;
                 left: 0;
                 right: 0;
+
+                display: none;
+
                 flex-direction: column;
+
                 gap: 0;
-                background: var(--bg-secondary);
-                border-bottom: 1px solid var(--border);
-                padding: 4px 20px 12px;
-                transform: translateY(-12px);
-                opacity: 0;
-                pointer-events: none;
-                transition: 0.25s ease;
+
+                padding: 10px 4% 15px;
+
+                background: #090d15;
+
+                border-bottom:
+                    1px solid var(--border);
             }
 
             .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: auto;
+                display: flex;
             }
 
             .nav-links li {
-                padding: 12px 0;
-                border-bottom: 1px solid #182234;
+                padding: 13px 0;
+
+                border-bottom:
+                    1px solid var(--border);
             }
 
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                display: block;
-                font-size: 15px;
+            .nav-contact {
+                display: inline-block;
             }
 
             .hero {
                 min-height: auto;
-                padding: 55px 0 50px;
-            }
 
-            .hero-grid {
-                gap: 35px;
+                padding: 90px 0 70px;
             }
 
             .hero h1 {
-                font-size: 43px;
-                letter-spacing: -1.5px;
-            }
+                font-size: 50px;
 
-            .hero-description {
-                font-size: 16px;
-            }
-
-            .hero-meta {
-                gap: 12px;
-                font-size: 12px;
+                letter-spacing: -2.5px;
             }
 
             .hero-buttons {
@@ -810,48 +1087,45 @@
                 width: 100%;
             }
 
-            .code-card {
-                max-width: none;
-            }
-
-            .code-body {
-                padding: 22px;
-            }
-
             section {
-                padding: 55px 0;
+                padding: 75px 0;
             }
 
-            .section-title {
-                font-size: 28px;
+            .about-number {
+                font-size: 80px;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
             }
 
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .service {
-                padding: 18px;
             }
 
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
             .project-image {
-                height: 180px;
+                height: 210px;
             }
 
-            .project-content {
-                padding: 18px;
+            .contact {
+                padding: 80px 0;
+            }
+
+            .contact-box {
+                padding: 45px 22px;
             }
 
             .contact-box h2 {
-                font-size: 31px;
+                font-size: 40px;
             }
-
         }
 
     </style>
@@ -860,29 +1134,54 @@
 
 <body>
 
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
     <header>
 
         <div class="container navbar">
 
             <a href="#inicio" class="logo">
-                Nathael<span>Web</span>
+                Nathael<span>.Web</span>
             </a>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+
+                <li>
+                    <a href="#inicio">Inicio</a>
+                </li>
+
+                <li>
+                    <a href="#sobre-mi">Sobre mí</a>
+                </li>
+
+                <li>
+                    <a href="#servicios">Servicios</a>
+                </li>
+
+                <li>
+                    <a href="#proyectos">Proyectos</a>
+                </li>
+
+                <li>
+                    <a href="#contacto" class="nav-contact">
+                        Contacto
+                    </a>
+                </li>
+
             </ul>
 
-            <button class="menu-toggle"
-                type="button"
-                aria-label="Abrir menú de navegación"
-                aria-controls="navLinks"
-                aria-expanded="false">
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Abrir menú">
+
                 <span></span>
                 <span></span>
                 <span></span>
+
             </button>
 
         </div>
@@ -890,50 +1189,56 @@
     </header>
 
 
+
     <main>
 
-        <!-- ==================================================
+
+        <!-- =====================================================
              HERO
-        ================================================== -->
+        ====================================================== -->
 
         <section class="hero" id="inicio">
 
             <div class="container hero-grid">
 
-                <div class="hero-text">
 
-                    <span class="eyebrow">
+                <div>
+
+                    <span class="hero-small">
                         Desarrollo Web
                     </span>
 
                     <h1>
-                        Creo páginas y
-                        <span>sistemas web.</span>
+                        Ideas que se
+                        convierten en
+                        <span>web.</span>
                     </h1>
 
                     <p class="hero-description">
-                        Desarrollo soluciones web para negocios
-                        y proyectos, desde páginas informativas
+                        Creo páginas y sistemas web pensados
+                        para funcionar, verse bien y ser fáciles
+                        de utilizar. Desde páginas informativas
                         hasta sistemas conectados a bases de datos.
                     </p>
 
-                    <div class="hero-meta">
-                        <span>PHP &amp; Laravel</span>
-                        <span>MySQL</span>
-                        <span>Campeche, MX</span>
-                    </div>
-
                     <div class="hero-buttons">
 
-                        <a href="#proyectos" class="btn btn-primary">
-                            Ver proyectos
+                        <a
+                            href="#proyectos"
+                            class="btn btn-primary">
+
+                            Ver mis proyectos
+
                         </a>
 
-                        <a href="https://wa.me/529811777056?text=Hola%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20cotizar%20una%20p%C3%A1gina%20web."
+                        <a
+                            href="https://wa.me/529811777056?text=Hola%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20cotizar%20una%20p%C3%A1gina%20web."
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="btn btn-outline">
-                            WhatsApp
+                            class="btn btn-secondary">
+
+                            Hablemos
+
                         </a>
 
                     </div>
@@ -941,39 +1246,93 @@
                 </div>
 
 
-                <div class="code-card">
 
-                    <div class="code-header">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
+                <!-- TARJETA -->
+
+                <div class="developer-card">
+
+                    <div class="card-top">
+
+                        <div class="window-dots">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <span class="card-status">
+                            disponible
+                        </span>
+
                     </div>
 
-                    <div class="code-body">
 
-                        <div class="code-logo">
-                            &lt;/&gt;
-                        </div>
+                    <div class="developer-icon">
+                        &lt;/&gt;
+                    </div>
 
-                        <h2>
-                            Nathael Web
-                        </h2>
+                    <h2>
+                        Nathael Web
+                    </h2>
 
-                        <p>
-                            Páginas y sistemas a la medida,
-                            conectados a base de datos.
-                        </p>
+                    <p>
+                        Desarrollo de páginas y sistemas
+                        web conectados a bases de datos.
+                    </p>
 
-                        <div class="code-line"></div>
 
-                        <div class="code-stack">
-                            <span class="mini-tag">HTML</span>
-                            <span class="mini-tag">CSS</span>
-                            <span class="mini-tag">JavaScript</span>
-                            <span class="mini-tag">PHP</span>
-                            <span class="mini-tag">Laravel</span>
-                            <span class="mini-tag">MySQL</span>
-                        </div>
+                    <div class="code-preview">
+
+                        <span class="blue">
+                            const
+                        </span>
+
+                        <span class="white">
+                            proyecto
+                        </span>
+
+                        = {
+
+                        <br><br>
+
+                        &nbsp;&nbsp;
+                        web:
+                        <span class="blue">
+                            true
+                        </span>,
+
+                        <br>
+
+                        &nbsp;&nbsp;
+                        database:
+                        <span class="blue">
+                            true
+                        </span>,
+
+                        <br>
+
+                        &nbsp;&nbsp;
+                        responsive:
+                        <span class="blue">
+                            true
+                        </span>
+
+                        <br><br>
+
+                        };
+
+                    </div>
+
+
+                    <div class="stack">
+
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>PHP</span>
+                        <span>Laravel</span>
+                        <span>MySQL</span>
 
                     </div>
 
@@ -984,49 +1343,86 @@
         </section>
 
 
-        <!-- ==================================================
+
+        <!-- =====================================================
              SOBRE MÍ
-        ================================================== -->
+        ====================================================== -->
 
         <section class="about" id="sobre-mi">
 
             <div class="container">
 
-                <div class="section-header">
-                    <h2 class="section-title">Sobre mí</h2>
-                    <p class="section-subtitle">
-                        Quién está detrás de Nathael Web.
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        01 / Sobre mí
+                    </span>
+
+                    <h2 class="section-title">
+                        Desarrollo con enfoque práctico.
+                    </h2>
+
+                    <p class="section-description">
+                        No se trata solamente de hacer que una
+                        página se vea bien, sino de crear algo
+                        que realmente pueda utilizarse.
                     </p>
+
                 </div>
+
 
                 <div class="about-grid">
 
-                    <div class="about-highlight">
-                        <strong>Web + BD</strong>
-                        <span>
-                            Sistemas conectados a bases de datos,
-                            hechos a la medida del proyecto.
-                        </span>
+
+                    <div>
+
+                        <div class="about-number">
+                            01
+                        </div>
+
                     </div>
 
-                    <div class="about-text">
+
+                    <div class="about-card">
+
                         <p>
                             Soy desarrollador web y trabajo creando
-                            soluciones que la gente pueda usar sin
-                            complicaciones, tanto en escritorio como
-                            en el celular.
+                            soluciones que puedan utilizarse de forma
+                            sencilla tanto en computadora como en celular.
                         </p>
+
                         <p>
-                            He desarrollado sistemas conectados a
-                            bases de datos y proyectos que están
-                            siendo usados en situaciones reales, no
-                            solo en pruebas.
+                            He trabajado con páginas web, sistemas
+                            administrativos y proyectos conectados
+                            a bases de datos.
                         </p>
+
                         <p>
-                            Hoy ofrezco desarrollo de páginas,
-                            sistemas web y mantenimiento de lo que
-                            ya tienes funcionando.
+                            Mi enfoque es crear proyectos claros,
+                            funcionales y adaptados a lo que realmente
+                            necesita cada caso.
                         </p>
+
+
+                        <div class="skills">
+
+                            <div class="skill">
+                                <strong>Frontend</strong>
+                                <span>HTML · CSS · JavaScript</span>
+                            </div>
+
+                            <div class="skill">
+                                <strong>Backend</strong>
+                                <span>PHP · Laravel</span>
+                            </div>
+
+                            <div class="skill">
+                                <strong>Datos</strong>
+                                <span>MySQL</span>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -1036,57 +1432,121 @@
         </section>
 
 
-        <!-- ==================================================
+
+        <!-- =====================================================
              SERVICIOS
-        ================================================== -->
+        ====================================================== -->
 
         <section id="servicios">
 
             <div class="container">
 
-                <div class="section-header">
-                    <h2 class="section-title">Servicios</h2>
-                    <p class="section-subtitle">
-                        Lo que puedo hacer por tu proyecto.
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        02 / Servicios
+                    </span>
+
+                    <h2 class="section-title">
+                        ¿Qué puedo hacer?
+                    </h2>
+
+                    <p class="section-description">
+                        Soluciones web para diferentes tipos
+                        de proyectos y necesidades.
                     </p>
+
                 </div>
+
 
                 <div class="services-grid">
 
+
                     <article class="service">
-                        <div class="service-icon" aria-hidden="true">🌐</div>
-                        <h3>Páginas web</h3>
+
+                        <span class="service-number">
+                            01
+                        </span>
+
+                        <div class="service-icon">
+                            🌐
+                        </div>
+
+                        <h3>
+                            Páginas web
+                        </h3>
+
                         <p>
-                            Sitios modernos y adaptados a celulares
+                            Sitios modernos, adaptables y pensados
                             para negocios, proyectos y emprendimientos.
                         </p>
+
                     </article>
 
+
                     <article class="service">
-                        <div class="service-icon" aria-hidden="true">⚙️</div>
-                        <h3>Sistemas web</h3>
+
+                        <span class="service-number">
+                            02
+                        </span>
+
+                        <div class="service-icon">
+                            ⚙️
+                        </div>
+
+                        <h3>
+                            Sistemas web
+                        </h3>
+
                         <p>
-                            Sistemas para gestionar información,
-                            usuarios y diferentes procesos.
+                            Sistemas para administrar información,
+                            procesos, usuarios y registros.
                         </p>
+
                     </article>
 
+
                     <article class="service">
-                        <div class="service-icon" aria-hidden="true">🗄️</div>
-                        <h3>Bases de datos</h3>
+
+                        <span class="service-number">
+                            03
+                        </span>
+
+                        <div class="service-icon">
+                            🗄️
+                        </div>
+
+                        <h3>
+                            Bases de datos
+                        </h3>
+
                         <p>
-                            Soluciones conectadas a bases de datos
+                            Proyectos conectados a bases de datos
                             para almacenar y administrar información.
                         </p>
+
                     </article>
 
+
                     <article class="service">
-                        <div class="service-icon" aria-hidden="true">🔧</div>
-                        <h3>Mantenimiento</h3>
+
+                        <span class="service-number">
+                            04
+                        </span>
+
+                        <div class="service-icon">
+                            🔧
+                        </div>
+
+                        <h3>
+                            Mantenimiento
+                        </h3>
+
                         <p>
-                            Correcciones, cambios y actualizaciones
+                            Cambios, correcciones y actualizaciones
                             para páginas y sistemas existentes.
                         </p>
+
                     </article>
 
                 </div>
@@ -1096,49 +1556,93 @@
         </section>
 
 
-        <!-- ==================================================
+
+        <!-- =====================================================
              PROYECTOS
-        ================================================== -->
+        ====================================================== -->
 
         <section class="projects" id="proyectos">
 
             <div class="container">
 
-                <div class="section-header">
-                    <h2 class="section-title">Proyectos</h2>
-                    <p class="section-subtitle">
-                        Algunos de los sistemas que he desarrollado.
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        03 / Proyectos
+                    </span>
+
+                    <h2 class="section-title">
+                        Cosas que he construido.
+                    </h2>
+
+                    <p class="section-description">
+                        Algunos proyectos y sistemas desarrollados
+                        durante mi trabajo y aprendizaje.
                     </p>
+
                 </div>
 
+
                 <div class="projects-grid">
+
+
+                    <!-- PROYECTO 1 -->
 
                     <article class="project">
 
                         <div class="project-image">
-                            <img src="Img/escolar.png"
-                                alt="Vista del sistema de registros escolares"
-                                loading="lazy"
-                                onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#101827,#162441)';this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#4f8cff;font-size:14px;font-weight:700;letter-spacing:2px;\'>SISTEMA ESCOLAR</div>';">
+
+                            <img
+                                src="Img/escolar.png"
+                                alt="Sistema de registros escolares">
+
                         </div>
+
 
                         <div class="project-content">
 
-                            <span class="project-note">Uso real</span>
+                            <div class="project-top">
 
-                            <h3>Sistema de Registros Escolares</h3>
+                                <span class="project-number">
+                                    PROYECTO 01
+                                </span>
+
+                                <span class="project-type">
+                                    Sistema web
+                                </span>
+
+                            </div>
+
+
+                            <h3>
+                                Sistema de Registros Escolares
+                            </h3>
 
                             <p>
                                 Sistema web para gestionar información
-                                escolar y facilitar la administración de
-                                datos de alumnos, grupos y registros.
+                                escolar y facilitar la administración
+                                de registros y datos.
                             </p>
 
+
                             <div class="tags">
-                                <span class="tag">PHP</span>
-                                <span class="tag">MySQL</span>
-                                <span class="tag">HTML</span>
-                                <span class="tag">CSS</span>
+
+                                <span class="tag">
+                                    PHP
+                                </span>
+
+                                <span class="tag">
+                                    MySQL
+                                </span>
+
+                                <span class="tag">
+                                    HTML
+                                </span>
+
+                                <span class="tag">
+                                    CSS
+                                </span>
+
                             </div>
 
                         </div>
@@ -1146,32 +1650,64 @@
                     </article>
 
 
+
+                    <!-- PROYECTO 2 -->
+
                     <article class="project">
 
                         <div class="project-image">
-                            <img src="Img/albergue.png"
-                                alt="Vista del sistema de gestión para albergue"
-                                loading="lazy"
-                                onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#101827,#162441)';this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#4f8cff;font-size:14px;font-weight:700;letter-spacing:2px;\'>SISTEMA ALBERGUE</div>';">
+
+                            <img
+                                src="Img/albergue.png"
+                                alt="Sistema de gestión para albergue">
+
                         </div>
+
 
                         <div class="project-content">
 
-                            <span class="project-note">Laravel</span>
+                            <div class="project-top">
 
-                            <h3>Sistema de Gestión para Albergue</h3>
+                                <span class="project-number">
+                                    PROYECTO 02
+                                </span>
+
+                                <span class="project-type">
+                                    Laravel
+                                </span>
+
+                            </div>
+
+
+                            <h3>
+                                Sistema de Gestión para Albergue
+                            </h3>
 
                             <p>
-                                Sistema web para gestionar información
-                                y registros internos de un albergue,
-                                con roles de usuario y control de datos.
+                                Sistema para administrar información
+                                y registros internos, conectado a
+                                una base de datos.
                             </p>
 
+
                             <div class="tags">
-                                <span class="tag">Laravel</span>
-                                <span class="tag">PHP</span>
-                                <span class="tag">MySQL</span>
-                                <span class="tag">JavaScript</span>
+
+                                <span class="tag">
+                                    Laravel
+                                </span>
+
+                                <span class="tag">
+                                    PHP
+                                </span>
+
+                                <span class="tag">
+                                    MySQL
+                                </span>
+
+                                <span class="tag">
+                                    JavaScript
+                                </span>
+
                             </div>
 
                         </div>
@@ -1185,30 +1721,134 @@
         </section>
 
 
-        <!-- ==================================================
+
+        <!-- =====================================================
              TECNOLOGÍAS
-        ================================================== -->
+        ====================================================== -->
 
         <section>
 
             <div class="container">
 
-                <div class="section-header">
-                    <h2 class="section-title">Tecnologías</h2>
-                    <p class="section-subtitle">
-                        Con lo que he trabajado hasta ahora.
-                    </p>
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        04 / Tecnologías
+                    </span>
+
+                    <h2 class="section-title">
+                        Herramientas con las que trabajo.
+                    </h2>
+
                 </div>
 
-                <div class="tech-list">
-                    <span class="tech">HTML</span>
-                    <span class="tech">CSS</span>
-                    <span class="tech">JavaScript</span>
-                    <span class="tech">PHP</span>
-                    <span class="tech">Laravel</span>
-                    <span class="tech">MySQL</span>
-                    <span class="tech">Git</span>
-                    <span class="tech">GitHub</span>
+
+                <div class="tech-grid">
+
+
+                    <div class="tech">
+
+                        <strong>
+                            HTML
+                        </strong>
+
+                        <span>
+                            Estructura web
+                        </span>
+
+                    </div>
+
+
+                    <div class="tech">
+
+                        <strong>
+                            CSS
+                        </strong>
+
+                        <span>
+                            Diseño y estilos
+                        </span>
+
+                    </div>
+
+
+                    <div class="tech">
+
+                        <strong>
+                            JavaScript
+                        </strong>
+
+                        <span>
+                            Interactividad
+                        </span>
+
+                    </div>
+
+
+                    <div class="tech">
+
+                        <strong>
+                            PHP
+                        </strong>
+
+                        <span>
+                            Desarrollo backend
+                        </span>
+
+                    </div>
+
+
+                    <div class="tech">
+
+                        <strong>
+                            Laravel
+                        </strong>
+
+                        <span>
+                            Framework PHP
+                        </span>
+
+                    </div>
+
+
+                    <div class="tech">
+
+                        <strong>
+                            MySQL
+                        </strong>
+
+                        <span>
+                            Bases de datos
+                        </span>
+
+                    </div>
+
+
+                    <div class="tech">
+
+                        <strong>
+                            Git
+                        </strong>
+
+                        <span>
+                            Control de versiones
+                        </span>
+
+                    </div>
+
+
+                    <div class="tech">
+
+                        <strong>
+                            GitHub
+                        </strong>
+
+                        <span>
+                            Repositorios
+                        </span>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -1216,9 +1856,10 @@
         </section>
 
 
-        <!-- ==================================================
+
+        <!-- =====================================================
              CONTACTO
-        ================================================== -->
+        ====================================================== -->
 
         <section class="contact" id="contacto">
 
@@ -1226,24 +1867,29 @@
 
                 <div class="contact-box">
 
-                    <h2>¿Tienes un proyecto en mente?</h2>
+                    <span class="section-label">
+                        05 / Contacto
+                    </span>
+
+                    <h2>
+                        ¿Tienes una idea?
+                    </h2>
 
                     <p>
-                        Cuéntame qué necesitas y vemos cómo
-                        puedo ayudarte.
+                        Cuéntame qué necesitas y podemos convertir
+                        esa idea en un proyecto web.
                     </p>
 
-                    <a href="https://wa.me/529811777056?text=Hola%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20cotizar%20una%20p%C3%A1gina%20web."
+
+                    <a
+                        href="https://wa.me/529811777056?text=Hola%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20cotizar%20una%20p%C3%A1gina%20web."
                         target="_blank"
                         rel="noopener noreferrer"
                         class="btn btn-primary">
-                        Escribirme por WhatsApp
-                    </a>
 
-                    <p class="contact-extra">
-                        También puedes escribirme a
-                        <a href="mailto:tu-correo@ejemplo.com">tu-correo@ejemplo.com</a>
-                    </p>
+                        Escribirme por WhatsApp
+
+                    </a>
 
                 </div>
 
@@ -1254,16 +1900,32 @@
     </main>
 
 
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
     <footer>
 
         <div class="container">
 
-            © <span id="year"></span> Nathael Web · Desarrollo Web
+            © <span id="year"></span>
+            Nathael Web · Desarrollo Web
 
             <div class="footer-links">
-                <a href="#inicio">Inicio</a>
-                <a href="#proyectos">Proyectos</a>
-                <a href="#contacto">Contacto</a>
+
+                <a href="#inicio">
+                    Inicio
+                </a>
+
+                <a href="#proyectos">
+                    Proyectos
+                </a>
+
+                <a href="#contacto">
+                    Contacto
+                </a>
+
             </div>
 
         </div>
@@ -1271,50 +1933,94 @@
     </footer>
 
 
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
     <script>
 
-        /* Año dinámico en el footer */
-        document.getElementById('year').textContent = new Date().getFullYear();
+        /* Año */
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
 
 
-        /* Menú hamburguesa */
-        const toggle = document.querySelector('.menu-toggle');
-        const nav = document.getElementById('navLinks');
 
-        toggle.addEventListener('click', () => {
-            const open = nav.classList.toggle('active');
-            toggle.setAttribute('aria-expanded', open);
+        /* Menú móvil */
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        menuToggle.addEventListener("click", () => {
+
+            navLinks.classList.toggle("active");
+
         });
 
-        /* Cierra el menú al hacer click en un enlace */
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-            });
-        });
 
+        /* Cerrar menú */
 
-        /* Aparición suave al hacer scroll */
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        navLinks
+            .querySelectorAll("a")
+            .forEach(link => {
 
-        if (!reduceMotion && 'IntersectionObserver' in window) {
-            const io = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        io.unobserve(entry.target);
-                    }
+                link.addEventListener("click", () => {
+
+                    navLinks.classList.remove("active");
+
                 });
-            }, { threshold: 0.12 });
 
-            document.querySelectorAll(
-                '.service, .project, .tech, .about-highlight, .about-text, .section-header'
-            ).forEach(el => {
-                el.classList.add('reveal');
-                io.observe(el);
             });
-        }
+
+
+
+        /* Animaciones */
+
+        const elements =
+            document.querySelectorAll(
+                ".service, .project, .tech, .about-card, .section-heading"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        elements.forEach(element => {
+
+            element.classList.add("reveal");
+
+            observer.observe(element);
+
+        });
 
     </script>
 
